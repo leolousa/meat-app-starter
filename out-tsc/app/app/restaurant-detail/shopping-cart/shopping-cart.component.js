@@ -8,10 +8,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { ShoppingCartService } from './shopping-cart.service';
 var ShoppingCartComponent = (function () {
-    function ShoppingCartComponent() {
+    function ShoppingCartComponent(carrinho) {
+        this.carrinho = carrinho;
     }
     ShoppingCartComponent.prototype.ngOnInit = function () {
+    };
+    ShoppingCartComponent.prototype.items = function () {
+        return this.carrinho.items;
+    };
+    ShoppingCartComponent.prototype.clear = function () {
+        this.carrinho.clear();
+    };
+    ShoppingCartComponent.prototype.removeItem = function (item) {
+        this.carrinho.removeItem(item);
+    };
+    ShoppingCartComponent.prototype.addItem = function (item) {
+        this.carrinho.addItem(item);
+    };
+    ShoppingCartComponent.prototype.total = function () {
+        return this.carrinho.total();
     };
     return ShoppingCartComponent;
 }());
@@ -20,7 +37,7 @@ ShoppingCartComponent = __decorate([
         selector: 'mt-shopping-cart',
         templateUrl: './shopping-cart.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [ShoppingCartService])
 ], ShoppingCartComponent);
 export { ShoppingCartComponent };
 //# sourceMappingURL=shopping-cart.component.js.map
