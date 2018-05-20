@@ -7,11 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+import { OrderService } from './order.service';
 import { Component } from '@angular/core';
 var OrderComponent = (function () {
-    function OrderComponent() {
+    function OrderComponent(ordens) {
+        this.ordens = ordens;
+        this.paymentOptions = [
+            { label: 'Dinheiro', value: 'MON' },
+            { label: 'Cartão de débito', value: 'DEB' },
+            { label: 'Cartão de refeição', value: 'REF' }
+        ];
     }
     OrderComponent.prototype.ngOnInit = function () {
+    };
+    OrderComponent.prototype.cartItems = function () {
+        return this.ordens.cartItems();
+    };
+    OrderComponent.prototype.increaseQty = function (item) {
+        this.ordens.increaseQty(item);
+    };
+    OrderComponent.prototype.decreaseQty = function (item) {
+        this.ordens.decreaseQty(item);
+    };
+    OrderComponent.prototype.remove = function (item) {
+        this.ordens.remove(item);
     };
     return OrderComponent;
 }());
@@ -20,7 +39,7 @@ OrderComponent = __decorate([
         selector: 'mt-order',
         templateUrl: './order.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [OrderService])
 ], OrderComponent);
 export { OrderComponent };
 //# sourceMappingURL=order.component.js.map
